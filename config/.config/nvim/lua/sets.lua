@@ -1,3 +1,5 @@
+vim.cmd("set termguicolors")
+
 vim.cmd("set scrolloff=25")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
@@ -15,7 +17,6 @@ vim.cmd("set incsearch")
 vim.cmd("set nohlsearch")
 
 vim.cmd("set backspace=indent,eol,start")
-vim.cmd("set termguicolors ")
 
 -- Sets linebreak column to ensure consistency.
 vim.cmd("set colorcolumn=80")
