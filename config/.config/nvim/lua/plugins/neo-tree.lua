@@ -28,6 +28,7 @@ return {
 					hide_hidden = false,
 					never_show = {
 						".vscode",
+						".git",
 					},
 				},
 				follow_current_file = {
