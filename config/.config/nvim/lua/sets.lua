@@ -1,3 +1,6 @@
+vim.cmd("set spelllang=en_us")
+vim.cmd("set spell")
+
 vim.cmd("set termguicolors")
 
 vim.cmd("set scrolloff=25")
