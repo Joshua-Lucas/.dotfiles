@@ -114,6 +114,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # Ruby
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH=$PATH:$(go env GOPATH)/bin
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
