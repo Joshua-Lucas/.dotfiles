@@ -28,3 +28,6 @@ vim.cmd("set  signcolumn=yes")
 -- Split below and right
 vim.cmd("set splitbelow")
 vim.cmd("set splitright")
+
+vim.cmd('au BufNewFile,BufRead *.ejs set filetype=html')
+
