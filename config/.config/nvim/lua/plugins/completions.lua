@@ -8,6 +8,51 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
+		config = function()
+			local ls = require("luasnip")
+			local fmt = require("luasnip.extras.fmt").fmt
+			local s = ls.snippet
+			local i = ls.insert_node
+			local f = ls.function_node
+
+			-- Load from friendly-snippets
+			require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- Define the custom snippet
+			ls.add_snippets("javascript", {
+				s(
+					"plc",
+					fmt(
+						[[
+import {{ html, render }} from '../utils/html';
+
+class {}Component extends HTMLElement {{
+  constructor() {{
+    super();
+    this.attachShadow({{ mode: 'open' }});
+  }}
+
+  connectedCallback() {{
+    render(this.template(), this.shadowRoot);
+  }}
+
+  template() {{
+    return html``
+  }}
+}}
+
+export default {}Component;
+			]],
+						{
+							i(1, "FileName"),
+							f(function(_, parent)
+								return parent.snippet.env.TM_FILENAME_BASE
+							end, {}),
+						}
+					)
+				),
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",

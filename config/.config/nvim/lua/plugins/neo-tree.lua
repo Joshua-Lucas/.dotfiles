@@ -27,7 +27,6 @@ return {
 					hide_gitignored = false,
 					hide_hidden = false,
 					never_show = {
-						".vscode",
 						".git",
 					},
 				},

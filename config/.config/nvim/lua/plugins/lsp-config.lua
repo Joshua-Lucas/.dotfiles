@@ -21,11 +21,14 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = false,
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
+      lspconfig.ts_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.html.setup({
@@ -46,6 +49,14 @@ return {
 
       lspconfig.rust_analyzer.setup({
         capabilities = capabilities,
+      })
+
+      vim.diagnostic.config({
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

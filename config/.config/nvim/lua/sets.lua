@@ -7,9 +7,9 @@ vim.cmd("set scrolloff=25")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.cmd("set expandtab")
 vim.cmd("set smartindent")
 
@@ -21,7 +21,7 @@ vim.cmd("set nohlsearch")
 
 vim.cmd("set backspace=indent,eol,start")
 
--- Sets linebreak column to ensure consistency.
+-- Sets line break column to ensure consistency.
 vim.cmd("set colorcolumn=80")
 vim.cmd("set  signcolumn=yes")
 
