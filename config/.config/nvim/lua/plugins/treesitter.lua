@@ -1,44 +1,48 @@
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.ejs = {
+        install_info = {
+          url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
+          files = { "src/parser.c" },
+        },
+        filetype = "ejs",
+      }
 
-		config = function()
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			parser_config.ejs = {
-				install_info = {
-					url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
-					files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
-					-- optional entries:
-					requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
-				},
-				filetype = "ejs", -- if filetype does not match the parser name
-			}
+      vim.filetype.add({ extension = { ejs = "ejs" } })
 
-			local config = require("nvim-treesitter.configs")
-			config.setup({
-				ensure_installed = {
-					"c",
-					"lua",
-					"vim",
-					"vimdoc",
-					"query",
-					"bash",
-					"javascript",
-					"json",
-					"typescript",
-					"tsx",
-					"css",
-					"rust",
-					"yaml",
-				},
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-			})
-			vim.cmd("set foldmethod=expr")
-			vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
-			vim.cmd("set nofoldenable")
-		end,
-	},
+      -- Map EJS filetype to HTML + JS
+      vim.treesitter.language.register("html", "ejs")
+      vim.treesitter.language.register("javascript", "ejs")
+
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "lua",
+          "vim",
+          "vimdoc",
+          "query",
+          "bash",
+          "javascript",
+          "json",
+          "typescript",
+          "tsx",
+          "css",
+          "rust",
+          "yaml",
+          "html",
+          "embedded_template",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+        auto_install = true,
+      })
+
+      vim.cmd("set foldmethod=expr")
+      vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+      vim.cmd("set nofoldenable")
+    end,
+  },
 }
